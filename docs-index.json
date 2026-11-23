@@ -1,0 +1,38 @@
+{
+  "project": "Hikvision Virtual ANPR",
+  "repository_suggestion": "realashleybailey/hikvision-virtual-anpr",
+  "documentation_version": "0.1.0",
+  "status": "design baseline; protocol compatibility unverified",
+  "pages": [
+    "README.md",
+    "docs/01-project-brief.md",
+    "docs/02-requirements.md",
+    "docs/03-architecture.md",
+    "docs/04-network-design.md",
+    "docs/05-proxmox-lxc.md",
+    "docs/06-virtual-device-model.md",
+    "docs/07-isapi-compatibility.md",
+    "docs/08-sadp-discovery.md",
+    "docs/09-media-pipeline.md",
+    "docs/10-anpr-engine.md",
+    "docs/11-anpr-events.md",
+    "docs/12-nvr-integration-test-plan.md",
+    "docs/13-data-model.md",
+    "docs/14-security.md",
+    "docs/15-web-ui.md",
+    "docs/16-observability.md",
+    "docs/17-testing.md",
+    "docs/18-milestones.md",
+    "docs/19-ai-agent-build-instructions.md",
+    "docs/20-open-questions.md",
+    "docs/21-reference-research.md",
+    "docs/22-glossary.md"
+  ],
+  "critical_constraints": [
+    "Greenfield implementation; references are research only",
+    "Native ANPR compatibility must be proven on exact NVR model and firmware",
+    "Preserve original CCTV recording path during development",
+    "32 virtual identities is a design target, not a CPU throughput guarantee",
+    "Do not configure example IP addresses until network discovery is complete"
+  ]
+}
