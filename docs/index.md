@@ -1,93 +1,121 @@
----
-title: Documentation
-layout: default
-nav_order: 1
-has_children: true
-permalink: /docs/
----
+# Hikvision Virtual ANPR
 
-# Documentation
+**A self-hosted virtual camera platform bringing local UK number plate recognition to existing CCTV infrastructure.**
 
-Technical specifications, architecture decisions, deployment instructions and implementation guidance for **Hikvision Virtual ANPR**.
+Hikvision Virtual ANPR is an independent, greenfield project designed to receive existing IP camera streams, analyse video locally, and expose software-defined camera identities and event interfaces for carefully tested integration with Hikvision network video recorders.
 
-This documentation serves as the project's engineering reference and implementation specification. It is intended for developers, contributors and AI coding agents working on the platform.
+<div class="grid cards" markdown>
 
-## Project overview
+-   :material-video-wireless:{ .lg .middle } **RTSP ingestion**
 
-Understand the goals, requirements and overall design before implementing individual components.
+    Receive and manage streams from existing IP cameras without inserting the service into their recording path.
 
-| Document | Description |
+-   :material-car-search:{ .lg .middle } **Local ANPR**
+
+    Detect vehicles and recognise UK registration plates using locally processed video.
+
+-   :material-camera-switch:{ .lg .middle } **Virtual cameras**
+
+    Present independently configured software-defined camera identities.
+
+-   :material-api:{ .lg .middle } **NVR integration**
+
+    Implement and test device-facing interfaces, event delivery and native ANPR indexing.
+
+</div>
+
+[Explore the architecture](03-architecture.md){ .md-button .md-button--primary }
+[View the GitHub repository](https://github.com/hiktools/Hikvision-Virtual-ANPR){ .md-button }
+
+## Project status
+
+!!! info "Design baseline — protocol compatibility unverified"
+    The project is currently at the design and protocol-research stage. Native ANPR compatibility must not be claimed until software-generated plate events are indexed and searchable through the target NVR's own vehicle or plate search interface.
+
+| Component | Initial target |
 |---|---|
-| [Project brief](01-project-brief.md) | Project goals, scope and objectives. |
-| [Requirements](02-requirements.md) | Functional and non-functional requirements. |
-| [Architecture](03-architecture.md) | System architecture and component responsibilities. |
-| [Network design](04-network-design.md) | Network topology, addressing and connectivity. |
-| [Development milestones](18-milestones.md) | Implementation phases and delivery priorities. |
+| NVR | Hikvision DS-7732NI-I4/16P(B) |
+| Firmware | V4.61.025 build 220905 |
+| Deployment | Debian LXC on Proxmox |
+| Processing | Local CPU-based inference |
+| Virtual camera capacity | Target of up to 32 identities |
+| ANPR profile | United Kingdom |
 
-## Infrastructure and deployment
+## How it works
 
-Deployment, device management and operational security.
+1. Existing IP cameras provide RTSP video streams.
+2. The platform ingests and forwards the streams.
+3. The inference pipeline detects vehicles and reads registration plates.
+4. Recognition results are stored as structured ANPR events with associated metadata and images.
+5. Virtual camera endpoints expose independently configured device identities.
+6. Compatibility tests establish which video, event and native ANPR features the target NVR actually accepts.
 
-| Document | Description |
-|---|---|
-| [Proxmox LXC deployment](05-proxmox-lxc.md) | Debian container deployment and configuration. |
-| [Virtual device model](06-virtual-device-model.md) | Virtual camera identities and device behaviour. |
-| [Security](14-security.md) | Authentication, access control and security requirements. |
+## Documentation
 
-## Hikvision integration
+<div class="grid cards" markdown>
 
-Research and implementation requirements for communicating with Hikvision equipment.
+-   **Project and architecture**
 
-| Document | Description |
-|---|---|
-| [ISAPI compatibility](07-isapi-compatibility.md) | Device-facing HTTP interfaces and protocol compatibility. |
-| [SADP discovery](08-sadp-discovery.md) | Device discovery and network identification. |
-| [NVR integration test plan](12-nvr-integration-test-plan.md) | Verification of video, events and native ANPR functionality. |
-| [Reference research](21-reference-research.md) | External technical references and research findings. |
+    Understand scope, requirements, system boundaries and implementation milestones.
 
-## Video processing and ANPR
+    - [Project brief](01-project-brief.md)
+    - [Requirements](02-requirements.md)
+    - [Architecture](03-architecture.md)
+    - [Milestones](18-milestones.md)
 
-The media pipeline, recognition engine and event handling.
+-   **Infrastructure**
 
-| Document | Description |
-|---|---|
-| [Media pipeline](09-media-pipeline.md) | RTSP ingestion, forwarding and stream management. |
-| [ANPR engine](10-anpr-engine.md) | Vehicle detection, plate recognition and OCR. |
-| [ANPR events](11-anpr-events.md) | Recognition events, images and event processing. |
-| [Data model](13-data-model.md) | Database entities and relationships. |
+    Plan networking, deployment, virtual devices and security.
 
-## Application and operations
+    - [Network design](04-network-design.md)
+    - [Proxmox LXC deployment](05-proxmox-lxc.md)
+    - [Virtual device model](06-virtual-device-model.md)
+    - [Security](14-security.md)
 
-The management interface, monitoring and quality assurance.
+-   **Hikvision integration**
 
-| Document | Description |
-|---|---|
-| [Web interface](15-web-ui.md) | Frontend design and management functionality. |
-| [Observability](16-observability.md) | Logging, monitoring and diagnostics. |
-| [Testing strategy](17-testing.md) | Unit, integration and compatibility testing. |
+    Research device discovery, ISAPI behaviour and NVR compatibility.
 
-## Development guidance
+    - [ISAPI compatibility](07-isapi-compatibility.md)
+    - [SADP discovery](08-sadp-discovery.md)
+    - [NVR integration test plan](12-nvr-integration-test-plan.md)
+    - [Reference research](21-reference-research.md)
 
-Instructions for contributors and automated development agents.
+-   **Video and ANPR**
 
-| Document | Description |
-|---|---|
-| [AI coding-agent instructions](19-ai-agent-build-instructions.md) | Implementation rules, development workflow and engineering constraints. |
-| [Open questions](20-open-questions.md) | Unresolved decisions and research requirements. |
-| [Glossary](22-glossary.md) | Technical terminology used throughout the project. |
+    Explore media handling, recognition, event processing and storage.
 
----
+    - [Media pipeline](09-media-pipeline.md)
+    - [ANPR engine](10-anpr-engine.md)
+    - [ANPR events](11-anpr-events.md)
+    - [Data model](13-data-model.md)
 
-## Important compatibility note
+-   **Application and operations**
 
-The project distinguishes between three separate capabilities:
+    Review the operator interface, observability and testing.
 
-1. Video streaming through a virtual camera.
-2. Generic event or alarm delivery.
-3. Native ANPR event indexing and plate searching through the NVR's own interface.
+    - [Web interface](15-web-ui.md)
+    - [Observability](16-observability.md)
+    - [Testing strategy](17-testing.md)
 
-These are not interchangeable. Native ANPR compatibility must be demonstrated through repeatable testing against the target recorder and firmware before it is considered supported.
+-   **Development resources**
 
-## Project repository
+    Guidance for contributors and AI coding agents.
 
-[Hikvision Virtual ANPR on GitHub](https://github.com/hiktools/Hikvision-Virtual-ANPR)
+    - [AI coding-agent instructions](19-ai-agent-build-instructions.md)
+    - [Open questions](20-open-questions.md)
+    - [Glossary](22-glossary.md)
+
+</div>
+
+## Engineering principles
+
+- **Greenfield development:** All software is independently implemented; external repositories are research references only.
+- **Local processing:** Video and recognition data remain on infrastructure controlled by the operator.
+- **Recording preservation:** Existing camera-to-NVR recording paths must remain operational during development.
+- **Protocol accuracy:** Undocumented behaviour is experimentally verified, never assumed.
+- **Failure isolation:** ANPR processing failures must not interrupt video forwarding.
+- **Honest compatibility:** Generic alarms, video streaming and native searchable ANPR records are treated as separate capabilities.
+
+!!! warning "Independent project"
+    Hikvision Virtual ANPR is not an official Hikvision product and is not affiliated with or certified by Hikvision. Compatibility depends on the exact recorder model and firmware and must be demonstrated through repeatable testing.

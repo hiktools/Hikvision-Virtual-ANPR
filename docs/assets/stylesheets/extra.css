@@ -1,0 +1,99 @@
+/* Hikvision Virtual ANPR — restrained dark developer-docs styling */
+:root {
+  --v-anpr-accent: #22d3ee;
+  --v-anpr-accent-soft: rgba(34, 211, 238, .12);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #0b1020;
+  --md-default-bg-color--light: #10182b;
+  --md-default-bg-color--lighter: #172238;
+  --md-default-bg-color--lightest: #202d45;
+  --md-code-bg-color: #0a1222;
+  --md-footer-bg-color: #080d19;
+  --md-primary-fg-color: #0b1220;
+  --md-primary-fg-color--dark: #080d19;
+  --md-accent-fg-color: var(--v-anpr-accent);
+}
+
+.md-header {
+  border-bottom: 1px solid rgba(148, 163, 184, .12);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, .18);
+}
+
+.md-tabs {
+  border-bottom: 1px solid rgba(148, 163, 184, .10);
+}
+
+.md-main__inner {
+  margin-top: 1.25rem;
+}
+
+.md-content {
+  max-width: 900px;
+}
+
+.md-typeset h1 {
+  font-weight: 750;
+  letter-spacing: -.04em;
+}
+
+.md-typeset h2 {
+  margin-top: 2.2em;
+  padding-bottom: .35em;
+  border-bottom: 1px solid rgba(148, 163, 184, .14);
+  letter-spacing: -.025em;
+}
+
+.md-typeset a {
+  text-decoration-thickness: .07em;
+  text-underline-offset: .18em;
+}
+
+.md-typeset code {
+  border-radius: 5px;
+}
+
+.md-typeset pre > code {
+  border: 1px solid rgba(148, 163, 184, .14);
+  border-radius: 10px;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 10px;
+  border-width: 0 0 0 3px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
+
+.md-nav__link--active {
+  color: var(--v-anpr-accent) !important;
+  font-weight: 650;
+}
+
+.md-search__form {
+  border: 1px solid rgba(148, 163, 184, .12);
+  border-radius: 9px;
+}
+
+.md-typeset table:not([class]) {
+  display: table;
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, .14);
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background: rgba(148, 163, 184, .08);
+}
+
+.md-footer-meta {
+  border-top: 1px solid rgba(148, 163, 184, .10);
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary {
+    border-right: 1px solid rgba(148, 163, 184, .10);
+  }
+}

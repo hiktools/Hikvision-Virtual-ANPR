@@ -1,0 +1,74 @@
+site_name: Hikvision Virtual ANPR
+site_url: https://hiktools.github.io/Hikvision-Virtual-ANPR/
+site_description: Independent virtual camera platform with local UK ANPR and carefully validated Hikvision NVR integration.
+repo_url: https://github.com/hiktools/Hikvision-Virtual-ANPR
+repo_name: hiktools/Hikvision-Virtual-ANPR
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - content.code.copy
+    - content.code.annotate
+    - search.highlight
+    - search.share
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Project:
+      - Project brief: 01-project-brief.md
+      - Requirements: 02-requirements.md
+      - Architecture: 03-architecture.md
+      - Development milestones: 18-milestones.md
+  - Infrastructure:
+      - Network design: 04-network-design.md
+      - Proxmox LXC deployment: 05-proxmox-lxc.md
+      - Virtual device model: 06-virtual-device-model.md
+      - Security: 14-security.md
+  - Hikvision integration:
+      - ISAPI compatibility: 07-isapi-compatibility.md
+      - SADP discovery: 08-sadp-discovery.md
+      - NVR integration test plan: 12-nvr-integration-test-plan.md
+      - Reference research: 21-reference-research.md
+  - Video and ANPR:
+      - Media pipeline: 09-media-pipeline.md
+      - ANPR engine: 10-anpr-engine.md
+      - ANPR events: 11-anpr-events.md
+      - Data model: 13-data-model.md
+  - Application and operations:
+      - Web interface: 15-web-ui.md
+      - Observability: 16-observability.md
+      - Testing strategy: 17-testing.md
+  - Development:
+      - AI coding-agent instructions: 19-ai-agent-build-instructions.md
+      - Open questions: 20-open-questions.md
+      - Glossary: 22-glossary.md
